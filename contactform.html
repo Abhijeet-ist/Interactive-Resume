@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Contact Form</title>
+</head>
+<body>
+    <center>
+        <div id="maindiv">
+            <form onsubmit="return(sub())" name="myform">
+                <h1>Enter you details</h1><br>
+                <lable for="name">Your Name: </lable>
+                <input type="text" name="name" id="name" placeholder="Full Name"><br><br>
+                <span class="error" id="nameerrror"></span>
+                <lable for="email">Your Email: </lable>
+                <input type="email" name="email" id="email" placeholder="Email">
+                <span class="error" id="emailerror"></span>
+                <br><br>
+                <lable for="cities">City:</lable>
+                <select name="cities" id="cities">
+                    <option value="Select">Select</option>
+                    <option value="noida">Noida</option>
+                    <option value="delhi">Delhi</option>
+                    <option value="mohali">Mohali</option>
+                    <option value="punjab">Punjab</option>
+                    <option value="punjab">Not Mentioned</option>
+                </select>
+                <span class="error" id="selecterror"></span>
+                <br><br>
+                <lable for="address">Reason for contact: </lable>
+                <textarea name="address" id="address" cols="20" rows="2">--Reason--</textarea>
+                <span class="error" id="addresserror"></span>
+                <br><br>
+                <lable for="gender">Gender: </lable>
+                <input type="radio" name="gender" value="male" id="male"> male
+                <input type="radio" name="gender" value="female" id="female"> female
+                <span class="error" id="gendererror>"></span>
+                <br><br>
+                <input type="submit" value="Submit form">
+                <input type="reset" value="RESET">
+                <div class="lightheme aboutme">
+                    <button id="contact_me_email"class="lightheme"><a href="index.html" style="color: bisque;">Back</a></button>
+                </div>
+            </form>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
