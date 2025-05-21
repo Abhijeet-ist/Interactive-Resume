@@ -1,115 +1,4 @@
-/* Import custom fonts */
-@font-face {
-    font-family: 'Heading-Now';
-    src: url('Heading-Now-Variable.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GeneralSans-Medium';
-    src: url('GeneralSans-Medium.otf') format('opentype');
-    font-weight: 500;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'GeneralSans-Regular';
-    src: url('GeneralSans-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-/* CSS Variables for consistent theming */
-:root {
-    --primary-color: #2563eb;
-    --secondary-color: #3b82f6;
-    --accent-color: #60a5fa;
-    --dark-color: #101720;
-    --light-color: #f3f4f6;
-    --text-color: #f8fafc;
-    --gray-color: #94a3b8;
-    --border-color: rgba(148, 163, 184, 0.2);
-    --card-bg: rgba(30, 41, 59, 0.7);
-    --gradient-bg: linear-gradient(135deg, #1e293b, #0f172a);
-    --overlay-color: rgba(15, 23, 42, 0.7);
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-    --transition-fast: 0.3s ease;
-    --transition-medium: 0.5s ease;
-    --transition-slow: 0.8s ease;
-    --border-radius-sm: 4px;
-    --border-radius-md: 8px;
-    --border-radius-lg: 12px;
-    --border-radius-xl: 20px;
-    --border-radius-full: 9999px;
-    --max-width: 1200px;
-    --nav-height: 70px;
-    --font-heading: 'Heading-Now', 'Poppins', sans-serif;
-    --font-body: 'GeneralSans-Regular', 'Montserrat', sans-serif;
-}
-
-/* Base styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    background-color: var(--dark-color);
-    color: var(--text-color);
-    line-height: 1.8;
-    overflow-x: hidden;
-    font-size: 16px;
-    letter-spacing: 0.3px;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-weight: 600;
-    line-height: 1.4;
-    margin-bottom: 1.2rem;
-    letter-spacing: 0.5px;
-}
-
-p {
-    margin-bottom: 1rem;
-}
-
-a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: all var(--transition-fast);
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Utility Classes */
-.responsive-container {
-    width: 100%;
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 20px;
-    overflow: hidden; /* Prevent overflow issues */
-}
-
-.division {
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 40px 0; /* Reduce vertical spacing */
-    clear: both; /* Ensure it clears floats */
-}
+/* Header Styles */
 .pageheader {
     position: fixed;
     top: 0;
@@ -137,7 +26,6 @@ img {
     font-size: 1.8rem;
     margin-bottom: 0;
     font-weight: 700;
-    letter-spacing: 1px;
 }
 
 .logo .highlight {
@@ -192,8 +80,8 @@ img {
 
 /* Hero Section Styles */
 .hero-section {
-    padding: 120px 0 70px;
-    min-height: 90vh;
+    padding: 160px 0 100px;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -202,7 +90,7 @@ img {
 .hero-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 40px;
+    gap: 60px;
     align-items: center;
 }
 
@@ -221,7 +109,6 @@ img {
     font-weight: 700;
     margin-bottom: 15px;
     color: white;
-    letter-spacing: 1px;
 }
 
 .hero-title {
@@ -229,14 +116,12 @@ img {
     margin-bottom: 25px;
     color: var(--gray-color);
     min-height: 40px;
-    letter-spacing: 0.5px;
 }
 
 .hero-description {
     font-size: 1.1rem;
     margin-bottom: 30px;
-    line-height: 1.8;
-    letter-spacing: 0.4px;
+    line-height: 1.7;
 }
 
 .hero-cta {
@@ -334,17 +219,17 @@ img {
 
 /* Skills Section Styles */
 .skills-section {
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .skills-container {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 60px;
 }
 
 .skill-category {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .skill-category h3 {
@@ -413,15 +298,14 @@ img {
 
 /* Education Timeline Styles */
 .education-section {
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .education-timeline {
     position: relative;
     max-width: 1000px;
     margin: 0 auto;
-    padding: 30px 0;
-    overflow: hidden; /* Add this to contain floated elements */
+    padding: 40px 0;
 }
 
 .education-timeline::before {
@@ -433,14 +317,12 @@ img {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 0;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 50px;
+    margin-bottom: 60px;
     width: 100%;
-    clear: both; /* Add this to prevent timeline items from wrapping */
 }
 
 .timeline-item:last-child {
@@ -473,9 +355,6 @@ img {
     border: 1px solid var(--border-color);
     box-shadow: var(--shadow-sm);
     transition: all var(--transition-fast);
-    margin-bottom: 20px;
-    float: left;
-    clear: both;
 }
 
 .timeline-content:hover {
@@ -492,14 +371,11 @@ img {
     background-color: var(--card-bg);
     border-top: 1px solid var(--border-color);
     border-right: 1px solid var(--border-color);
-    right: -10px;
-    transform: rotate(45deg);
 }
 
 .timeline-content h3 {
     font-size: 1.3rem;
     margin-bottom: 10px;
-    letter-spacing: 0.5px;
 }
 
 .timeline-date {
@@ -512,14 +388,17 @@ img {
     margin-bottom: 15px;
 }
 
-.timeline-content.right {
-    float: right;
+.timeline-content {
+    float: left;
 }
 
-.timeline-content.right::after {
-    left: -10px;
-    right: auto;
-    transform: rotate(-135deg);
+.timeline-content::after {
+    right: -10px;
+    transform: rotate(45deg);
+}
+
+.timeline-content.right {
+    float: right;
 }
 
 .timeline-content.right::after {
@@ -529,13 +408,13 @@ img {
 
 /* Projects Section Styles */
 .projects-section {
-    padding: 60px 0;
+    padding: 100px 0;
 }
 
 .projects-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    gap: 40px;
 }
 
 .project-card {
@@ -776,16 +655,13 @@ footer {
         left: 40px;
     }
     
-    .timeline-content, .timeline-content.right {
+    .timeline-content {
         width: calc(100% - 90px);
         float: right;
-        margin-left: 70px;
-        margin-right: 0;
     }
     
-    .timeline-content::after, .timeline-content.right::after {
+    .timeline-content::after {
         left: -10px;
-        right: auto;
         transform: rotate(-135deg);
     }
 }
@@ -895,25 +771,6 @@ footer {
     background-color: rgba(96, 165, 250, 0.1);
     transform: translateY(-2px);
     box-shadow: var(--shadow-md);
-}
-
-.btn-sm {
-    padding: 8px 16px;
-    font-size: 14px;
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-}
-
-.btn-outline:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.btn-disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
 }
 
 .section-header {
