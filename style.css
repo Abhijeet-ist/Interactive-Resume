@@ -701,6 +701,51 @@ img {
 .project-links {
     display: flex;
     gap: 15px;
+    margin-top: 20px;
+}
+
+.project-links a {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    border-radius: var(--border-radius-md);
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: all var(--transition-fast);
+    text-align: center;
+}
+
+.project-links .demo-link {
+    background: linear-gradient(135deg, var(--primary-color), #4f46e5);
+    color: white;
+    box-shadow: 0 4px 10px rgba(59, 130, 246, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-links .source-link {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--accent-color);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.project-links a:hover {
+    transform: translateY(-3px);
+}
+
+.project-links .demo-link:hover {
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    box-shadow: 0 6px 15px rgba(59, 130, 246, 0.35);
+}
+
+.project-links .source-link:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: var(--accent-color);
+}
+
+.project-links i {
+    margin-right: 8px;
 }
 
 /* Footer Styles */
