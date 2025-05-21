@@ -69,6 +69,20 @@ body {
     overflow-x: hidden;
     font-size: 16px;
     letter-spacing: 0.3px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+#main1 {
+    flex: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -98,10 +112,10 @@ img {
 /* Utility Classes */
 .responsive-container {
     width: 100%;
-    max-width: var(--max-width);
+    max-width: 1200px; /* Restore max-width */
     margin: 0 auto;
-    padding: 0 20px;
-    overflow: hidden; /* Prevent overflow issues */
+    padding: 0 20px; /* Consistent padding on both sides */
+    overflow: hidden;
 }
 
 .division {
@@ -116,11 +130,19 @@ img {
     left: 0;
     width: 100%;
     height: var(--nav-height);
-    background-color: rgba(16, 23, 32, 0.9);
+    background: linear-gradient(135deg, rgba(20, 30, 48, 0.85), rgba(36, 59, 85, 0.75));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     z-index: 1000;
-    transition: all var(--transition-fast);
+    transition: all 0.4s ease;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.pageheader.scrolled {
+    height: 70px;
+    background: linear-gradient(135deg, rgba(16, 24, 40, 0.95), rgba(28, 45, 65, 0.9));
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
 .headercontainer {
@@ -128,66 +150,130 @@ img {
     justify-content: space-between;
     align-items: center;
     height: 100%;
-    max-width: var(--max-width);
+    max-width: 1200px; /* Match with responsive-container */
     margin: 0 auto;
     padding: 0 20px;
+    position: relative;
 }
 
 .logo h1 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 0;
     font-weight: 700;
     letter-spacing: 1px;
+    background: linear-gradient(to right, #fff, #a5b4fc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: all 0.3s ease;
 }
 
 .logo .highlight {
     color: var(--primary-color);
+    text-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+}
+
+.logo h1:hover {
+    transform: translateY(-2px);
 }
 
 .main-nav ul {
     display: flex;
     list-style: none;
     gap: 30px;
+    align-items: center;
 }
 
-.main-nav a {
+.main-nav .nav-link {
     font-size: 16px;
     font-weight: 500;
     position: relative;
     padding: 8px 0;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
 }
 
-.main-nav a::after {
+.main-nav .nav-link span {
+    position: relative;
+    z-index: 2;
+}
+
+.main-nav .nav-link::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 0;
+    width: 0%;
     height: 2px;
-    background-color: var(--primary-color);
-    transition: width var(--transition-fast);
+    background: linear-gradient(to right, var(--primary-color), #60a5fa);
+    transition: width 0.3s ease;
+    opacity: 0;
 }
 
-.main-nav a:hover::after,
-.main-nav a.active::after {
+.main-nav .nav-link:hover,
+.main-nav .nav-link.active {
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+.main-nav .nav-link:hover::before,
+.main-nav .nav-link.active::before {
     width: 100%;
+    opacity: 1;
 }
 
 .nav-cta {
-    background-color: var(--primary-color);
-    padding: 8px 20px;
+    background: linear-gradient(135deg, var(--primary-color), #4f46e5);
+    padding: 10px 22px;
     border-radius: var(--border-radius-md);
+    font-weight: 500;
+    color: white !important;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+    border: none; /* Remove any border that might be causing the white effect */
+    text-decoration: none;
+    display: inline-block;
+}
+
+.nav-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.4s ease;
 }
 
 .nav-cta:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(59, 130,246, 0.4);
+    background: linear-gradient(135deg, #4361ee, #3a0ca3); /* Slightly darker gradient on hover */
+    border: none;
 }
 
 .menu-toggle {
     display: none;
     font-size: 24px;
     cursor: pointer;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: all 0.3s ease;
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: rotate(90deg);
 }
 
 /* Hero Section Styles */
@@ -306,11 +392,12 @@ img {
 
 .scroll-down {
     position: absolute;
-    bottom: 40px;
+    top: calc(100vh - 120px);  /* Position it near the bottom of the viewport */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
     animation: bounce 2s infinite;
+    z-index: 5;  /* Ensure it's above other elements */
 }
 
 .scroll-down a {
@@ -620,6 +707,9 @@ img {
 footer {
     background-color: rgba(16, 23, 32, 0.8);
     padding-top: 70px;
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .footer-content {
@@ -694,6 +784,8 @@ footer {
     text-align: center;
     padding: 20px 0;
     border-top: 1px solid var(--border-color);
+    margin-bottom: 0;
+    padding-bottom: 20px;
 }
 
 .footer-bottom p {
@@ -737,209 +829,204 @@ footer {
 
 @media screen and (max-width: 768px) {
     .menu-toggle {
-        display: block;
+        display: flex;
+    }
+    
+    .headercontainer {
+        padding: 0 15px;
     }
     
     .main-nav {
-        position: fixed;
-        top: var(--nav-height);
+        position: absolute;
+        top: 100%;
         left: 0;
         width: 100%;
-        background-color: var(--dark-color);
+        background: linear-gradient(135deg, rgba(16, 24, 40, 0.98), rgba(28, 45, 65, 0.96));
         padding: 20px;
-        transform: translateY(-100%);
+        border-radius: 0 0 15px 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+        transition: all 0.4s ease-in-out;
         opacity: 0;
-        visibility: hidden;
-        transition: all var(--transition-fast);
     }
     
     .main-nav.active {
-        transform: translateY(0);
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
         opacity: 1;
-        visibility: visible;
     }
     
     .main-nav ul {
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
+        align-items: center;
     }
     
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .education-timeline::before {
-        left: 40px;
-    }
-    
-    .timeline-icon {
-        left: 40px;
-    }
-    
-    .timeline-content, .timeline-content.right {
-        width: calc(100% - 90px);
-        float: right;
-        margin-left: 70px;
-        margin-right: 0;
-    }
-    
-    .timeline-content::after, .timeline-content.right::after {
-        left: -10px;
-        right: auto;
-        transform: rotate(-135deg);
-    }
-}
-
-@media screen and (max-width: 576px) {
-    .hero-name {
-        font-size: 2.5rem;
-    }
-    
-    .hero-title {
-        font-size: 1.5rem;
-    }
-    
-    .hero-cta {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .hero-cta .btn {
+    .main-nav .nav-link {
+        font-size: 18px;
         width: 100%;
-    }
-    
-    .skill-card {
-        padding: 20px;
-    }
-    
-    .footer-content {
-        grid-template-columns: 1fr;
         text-align: center;
+        padding: 12px 0;
     }
     
-    .footer-contact p {
-        justify-content: center;
-    }
-    
-    .footer-social {
-        justify-content: center;
+    .nav-cta {
+        width: 80%;
+        text-align: center;
+        margin-top: 10px;
     }
 }
 
-/* Animation Keyframes */
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Fix for excessive scrolling */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
 }
 
-@keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
 }
 
-@keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
+#main1 {
+    flex: 1;
 }
 
-/* Animation Classes */
-.fadeIn {
-    animation: fadeIn 1s forwards;
+footer {
+    margin-top: auto;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
-.slideInLeft {
-    animation: slideInLeft 1s forwards;
+.responsive-container {
+    width: 100%;
+    max-width: 1200px; /* Restore max-width */
+    margin: 0 auto;
+    padding: 0 20px; /* Consistent padding on both sides */
+    overflow: hidden;
 }
 
-.slideInRight {
-    animation: slideInRight 1s forwards;
+.projects-section {
+    padding-bottom: 60px; /* Reduce bottom padding */
 }
 
-/* Utility classes */
-.division {
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 60px 0;
+section:last-of-type {
+    margin-bottom: 0;
+    padding-bottom: 60px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: var(--border-radius-md);
-    font-weight: 500;
-    text-align: center;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-    border: none;
-    font-size: 16px;
+.footer-bottom {
+    margin-bottom: 0;
+    padding-bottom: 20px;
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
+/* Fix for scrollbar jumping issue */
+html {
+    scrollbar-gutter: stable;
 }
 
-.btn-primary:hover {
-    background-color: #1d4ed8;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
+/* Fix for disrupted padding */
+.responsive-container {
+    width: 100%;
+    max-width: 1200px; /* Restore max-width */
+    margin: 0 auto;
+    padding: 0 20px; /* Consistent padding on both sides */
+    overflow: hidden;
 }
 
-.btn-secondary {
-    background-color: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--accent-color);
-}
-
-.btn-secondary:hover {
-    background-color: rgba(96, 165, 250, 0.1);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-.btn-sm {
-    padding: 8px 16px;
-    font-size: 14px;
-}
-
-.btn-outline {
-    background-color: transparent;
-    border: 1px solid var(--border-color);
-}
-
-.btn-outline:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
-.btn-disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
-}
-
-.section-title {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+/* Ensure header container matches the content width */
+.headercontainer {
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    max-width: 1200px; /* Match with responsive-container */
+    margin: 0 auto;
+    padding: 0 20px;
     position: relative;
-    display: inline-block;
 }
 
-.section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background-color: var(--primary-color);
+/* Fix section padding to maintain consistency */
+section {
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
-.section-subtitle {
-    color: var(--gray-color);
-    font-size: 1.1rem;
+/* Fix for skills section */
+.skills-section .skill-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* Fix for education timeline */
+.education-section .timeline {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Fix for projects section */
+.projects-section .project-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin: 0 auto;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+/* Fix for the footer */
+footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Disable the negative margin fix that might be causing issues */
+#main1 {
+    margin-bottom: 0 !important; /* Override any JS-added negative margins */
+}
+
+/* Fix for hero section specific padding */
+.hero-section {
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Make sure the overflow issue is fixed */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+/* Media queries for responsive padding */
+@media (max-width: 768px) {
+    .responsive-container,
+    .headercontainer,
+    .skills-section .skill-cards,
+    .education-section .timeline,
+    .projects-section .project-cards,
+    footer .footer-content {
+        padding: 0 15px; /* Slightly smaller padding on mobile */
+    }
+    
+    section,
+    .hero-section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
 }

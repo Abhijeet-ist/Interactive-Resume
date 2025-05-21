@@ -44,6 +44,16 @@ document.addEventListener('DOMContentLoaded', function() {
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', function() {
       mainNav.classList.toggle('active');
+      
+      // Optional: Add icon change when menu is opened
+      const icon = this.querySelector('i');
+      if (icon.classList.contains('fa-bars')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
     });
   }
   
@@ -54,6 +64,23 @@ document.addEventListener('DOMContentLoaded', function() {
       mainNav.classList.remove('active');
     });
   });
+});
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+  const mainNav = document.querySelector('.main-nav');
+  const menuToggle = document.querySelector('.menu-toggle');
+  
+  if (mainNav.classList.contains('active') && 
+      !mainNav.contains(event.target) && 
+      !menuToggle.contains(event.target)) {
+    mainNav.classList.remove('active');
+    
+    // Reset icon
+    const icon = menuToggle.querySelector('i');
+    icon.classList.remove('fa-times');
+    icon.classList.add('fa-bars');
+  }
 });
 
 // Intersection Observer for animation on scroll
@@ -104,6 +131,16 @@ document.addEventListener('DOMContentLoaded', function() {
   window.addEventListener('load', highlightNavOnScroll);
 });
 
+// Navbar scroll effect
+window.addEventListener('scroll', function() {
+    const header = document.getElementById('pageheader');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
 // Check if it's a mobile device
 function isMobile() {
   return window.innerWidth <= 768;
@@ -118,5 +155,31 @@ window.addEventListener('resize', function() {
     // Desktop-specific adjustments
     scroll.update();
   }
+});
+
+// Fix excessive scrolling
+document.addEventListener('DOMContentLoaded', function() {
+  // Function to adjust container height to prevent extra scrolling
+  function adjustContainerHeight() {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight;
+    const footerHeight = document.querySelector('footer').offsetHeight;
+    
+    // Check if document is taller than it needs to be
+    if (documentHeight > windowHeight + footerHeight + 100) {
+      // Trim excess height from main container
+      const excessHeight = documentHeight - (windowHeight + footerHeight);
+      const main = document.getElementById('main1');
+      if (main) {
+        main.style.marginBottom = `-${excessHeight}px`;
+      }
+    }
+  }
+  
+  // Run on page load
+  adjustContainerHeight();
+  
+  // Run when window is resized
+  window.addEventListener('resize', adjustContainerHeight);
 });
 
