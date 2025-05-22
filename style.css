@@ -748,99 +748,100 @@ img {
     margin-right: 8px;
 }
 
-/* Footer Styles */
-footer {
-    background-color: rgba(16, 23, 32, 0.8);
-    padding-top: 70px;
-    margin-top: auto;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.footer-content {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    padding-bottom: 50px;
-}
-
-.footer-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 15px;
-}
-
-.footer-info p {
-    color: var(--gray-color);
-    margin-bottom: 10px;
-}
-
-.footer-links h4, .footer-contact h4 {
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-}
-
-.footer-links ul {
-    list-style: none;
-}
-
-.footer-links li {
-    margin-bottom: 12px;
-}
-
-.footer-links a {
-    color: var(--gray-color);
-    transition: color var(--transition-fast);
-}
-
-.footer-links a:hover {
-    color: var(--accent-color);
-}
-
-.footer-contact p {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--gray-color);
-    margin-bottom: 20px;
-}
-
-.footer-social {
-    display: flex;
-    gap: 15px;
-}
-
-.footer-social a {
-    display: flex;
+/* Button Styles */
+.btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
-    border-radius: var(--border-radius-full);
-    background-color: rgba(255, 255, 255, 0.1);
-    transition: all var(--transition-fast);
+    padding: 12px 24px;
+    border-radius: var(--border-radius-md);
+    font-weight: 600;
+    font-size: 1rem;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    gap: 10px;
+    letter-spacing: 0.5px;
+    z-index: 1;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border: none;
 }
 
-.footer-social a:hover {
-    background-color: var(--primary-color);
+.btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn i {
+    font-size: 1.1rem;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.btn:hover i {
+    transform: translateX(3px);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    z-index: 1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease;
+}
+
+.btn:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color), #4f46e5);
+    color: white;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #4361ee, #3a0ca3);
+    box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
     transform: translateY(-3px);
 }
 
-.footer-bottom {
-    text-align: center;
-    padding: 20px 0;
-    border-top: 1px solid var(--border-color);
-    margin-bottom: 0;
-    padding-bottom: 20px;
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.footer-bottom p {
-    color: var(--gray-color);
-    font-size: 0.9rem;
-    margin-bottom: 0;
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.footer-bottom i {
-    color: #e11d48;
+/* Fix hero CTA container on mobile */
+@media screen and (max-width: 576px) {
+    .hero-cta {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+    }
 }
 
 /* Responsive Styles */
@@ -925,7 +926,6 @@ html, body {
     overflow-x: hidden;
     max-width: 100%;
 }
-
 body {
     min-height: 100vh;
     display: flex;
@@ -933,17 +933,14 @@ body {
     margin: 0;
     padding: 0;
 }
-
 #main1 {
     flex: 1;
 }
-
 footer {
     margin-top: auto;
     margin-bottom: 0;
     padding-bottom: 0;
 }
-
 .responsive-container {
     width: 100%;
     max-width: 1200px; /* Restore max-width */
@@ -951,35 +948,6 @@ footer {
     padding: 0 20px; /* Consistent padding on both sides */
     overflow: hidden;
 }
-
-.projects-section {
-    padding-bottom: 60px; /* Reduce bottom padding */
-}
-
-section:last-of-type {
-    margin-bottom: 0;
-    padding-bottom: 60px;
-}
-
-.footer-bottom {
-    margin-bottom: 0;
-    padding-bottom: 20px;
-}
-
-/* Fix for scrollbar jumping issue */
-html {
-    scrollbar-gutter: stable;
-}
-
-/* Fix for disrupted padding */
-.responsive-container {
-    width: 100%;
-    max-width: 1200px; /* Restore max-width */
-    margin: 0 auto;
-    padding: 0 20px; /* Consistent padding on both sides */
-    overflow: hidden;
-}
-
 /* Ensure header container matches the content width */
 .headercontainer {
     justify-content: space-between;
@@ -990,7 +958,6 @@ html {
     padding: 0 20px;
     position: relative;
 }
-
 /* Fix section padding to maintain consistency */
 section {
     padding-left: 20px;
@@ -999,7 +966,6 @@ section {
     max-width: 100%;
     box-sizing: border-box;
 }
-
 /* Fix for skills section */
 .skills-section .skill-cards {
     display: flex;
@@ -1010,14 +976,12 @@ section {
     max-width: 1200px;
     padding: 0 20px;
 }
-
 /* Fix for education timeline */
 .education-section .timeline {
     max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 /* Fix for projects section */
 .projects-section .project-cards {
     display: flex;
@@ -1028,14 +992,12 @@ section {
     max-width: 1200px;
     padding: 0 20px;
 }
-
 /* Fix for the footer */
 footer .footer-content {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
 }
-
 /* Disable the negative margin fix that might be causing issues */
 #main1 {
     margin-bottom: 0 !important; /* Override any JS-added negative margins */
@@ -1076,3 +1038,19 @@ html, body {
     }
 }
 
+@media (max-width: 576px) {
+    .responsive-container,
+    .headercontainer,
+    .skills-section .skill-cards,
+    .education-section .timeline,
+    .projects-section .project-cards,
+    footer .footer-content {
+        padding: 0 10px; /* Even smaller padding on smaller devices */
+    }
+    
+    section,
+    .hero-section {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
