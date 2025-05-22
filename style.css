@@ -937,26 +937,186 @@ body {
     flex: 1;
 }
 footer {
+    background-color: #0f172a;
+    padding: 70px 0 0;
     margin-top: auto;
     margin-bottom: 0;
-    padding-bottom: 0;
+    position: relative;
+    box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+}
+
+footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+}
+
+.footer-info h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.footer-info h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-info p {
+    color: #94a3b8;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.footer-links h4, .footer-contact h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    color: #fff;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.footer-links h4::after, .footer-contact h4::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #94a3b8;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    padding-left: 15px;
+}
+
+.footer-links a::before {
+    content: '>';
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    transform: translateX(5px);
+}
+
+.footer-links a:hover::before {
+    opacity: 1;
+}
+
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.footer-contact p i {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.footer-social {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.footer-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #94a3b8;
+    transition: all 0.3s ease;
+}
+
+.footer-social a:hover {
+    background-color: var(--primary-color);
+    color: white;
+    transform: translateY(-5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding: 25px 0;
+    margin-top: 50px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom p {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.footer-bottom i {
+    color: #ef4444;
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+}
+
+/* Responsive container for all sections */
 .responsive-container {
     width: 100%;
     max-width: 1200px; /* Restore max-width */
     margin: 0 auto;
     padding: 0 20px; /* Consistent padding on both sides */
     overflow: hidden;
-}
-/* Ensure header container matches the content width */
-.headercontainer {
-    justify-content: space-between;
-    align-items: center;
-    height: 100%;
-    max-width: 1200px; /* Match with responsive-container */
-    margin: 0 auto;
-    padding: 0 20px;
-    position: relative;
 }
 /* Fix section padding to maintain consistency */
 section {
@@ -1026,8 +1186,7 @@ html, body {
     .headercontainer,
     .skills-section .skill-cards,
     .education-section .timeline,
-    .projects-section .project-cards,
-    footer .footer-content {
+    .projects-section .project-cards {
         padding: 0 15px; /* Slightly smaller padding on mobile */
     }
     
@@ -1036,6 +1195,21 @@ html, body {
         padding-left: 15px;
         padding-right: 15px;
     }
+    
+    footer .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    
+    .footer-info {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+    
+    .footer-info h3::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
 }
 
 @media (max-width: 576px) {
@@ -1043,8 +1217,7 @@ html, body {
     .headercontainer,
     .skills-section .skill-cards,
     .education-section .timeline,
-    .projects-section .project-cards,
-    footer .footer-content {
+    .projects-section .project-cards {
         padding: 0 10px; /* Even smaller padding on smaller devices */
     }
     
@@ -1052,5 +1225,38 @@ html, body {
     .hero-section {
         padding-left: 10px;
         padding-right: 10px;
+    }
+    
+    footer {
+        padding-top: 50px;
+    }
+    
+    footer .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .footer-info h3::after,
+    .footer-links h4::after,
+    .footer-contact h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer-links a {
+        padding-left: 0;
+    }
+    
+    .footer-links a::before {
+        display: none;
+    }
+    
+    .footer-contact p {
+        justify-content: center;
+    }
+    
+    .footer-social {
+        justify-content: center;
     }
 }
