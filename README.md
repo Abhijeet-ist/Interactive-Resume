@@ -15,7 +15,7 @@ A modern, responsive, and interactive online resume built with HTML, CSS, and Ja
 
 ## 🚀 Live Demo
 
-[View the live demo](#) <!-- Add your deployed site URL here when available -->
+[View the live demo](https://interactive-resume-abhi.vercel.app/) <!-- Add your deployed site URL here when available -->
 
 ## 🛠️ Technologies Used
 
@@ -94,7 +94,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👤 Author
 
-- **Abhijeet Kumar** - [GitHub Profile](#) <!-- Add your GitHub profile link -->
+- **Abhijeet Kumar** - [GitHub Profile](https://github.com/Abhijeet-ist) <!-- Add your GitHub profile link -->
 
 ## 🙏 Acknowledgements
 
