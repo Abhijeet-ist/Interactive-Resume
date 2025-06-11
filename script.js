@@ -1,17 +1,17 @@
 // Initialize Locomotive Scroll
-const scroll = new LocomotiveScroll({
-  el: document.querySelector('#main1'),
-  smooth: true,
-  lerp: 0.04,
-  smartphone: {
-    smooth: true,
-    lerp: 0.05
-  },
-  tablet: {
-    smooth: true,
-    lerp: 0.05
-  }
-});
+// const scroll = new LocomotiveScroll({
+//   el: document.querySelector('#main1'),
+//   smooth: true,
+//   lerp: 0.04,
+//   smartphone: {
+//     smooth: true,
+//     lerp: 0.05
+//   },
+//   tablet: {
+//     smooth: true,
+//     lerp: 0.05
+//   }
+// });
 
 // Initialize Typed.js for text animation
 document.addEventListener('DOMContentLoaded', function() {
@@ -41,27 +41,45 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.querySelector('.menu-toggle');
   const mainNav = document.querySelector('.main-nav');
   
+  // Function to check if we're in mobile view
+  function isMobileView() {
+    return window.innerWidth <= 768;
+  }
+  
   if (menuToggle && mainNav) {
     menuToggle.addEventListener('click', function() {
-      mainNav.classList.toggle('active');
-      
-      // Optional: Add icon change when menu is opened
-      const icon = this.querySelector('i');
-      if (icon.classList.contains('fa-bars')) {
-        icon.classList.remove('fa-bars');
-        icon.classList.add('fa-times');
-      } else {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+      // Only toggle if in mobile view
+      if (isMobileView()) {
+        mainNav.classList.toggle('active');
+        menuToggle.classList.toggle('active');
+        document.body.classList.toggle('menu-open'); // Add this class to prevent scrolling
+        
+        // Update icon
+        const icon = this.querySelector('i');
+        if (icon.classList.contains('fa-bars')) {
+          icon.classList.remove('fa-bars');
+          icon.classList.add('fa-times');
+        } else {
+          icon.classList.remove('fa-times');
+          icon.classList.add('fa-bars');
+        }
       }
     });
   }
-  
-  // Close menu when clicking on a link
+    // Close menu when clicking on a link
   const navLinks = document.querySelectorAll('.main-nav a');
   navLinks.forEach(link => {
     link.addEventListener('click', function() {
       mainNav.classList.remove('active');
+      menuToggle.classList.remove('active');
+      document.body.classList.remove('menu-open'); // Remove class to enable scrolling
+      
+      // Reset icon
+      const icon = menuToggle.querySelector('i');
+      if (icon) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
     });
   });
 });
@@ -71,15 +89,19 @@ document.addEventListener('click', function(event) {
   const mainNav = document.querySelector('.main-nav');
   const menuToggle = document.querySelector('.menu-toggle');
   
-  if (mainNav.classList.contains('active') && 
+  if (mainNav && menuToggle && mainNav.classList.contains('active') && 
       !mainNav.contains(event.target) && 
       !menuToggle.contains(event.target)) {
     mainNav.classList.remove('active');
+    menuToggle.classList.remove('active');
+    document.body.classList.remove('menu-open'); // Remove class to enable scrolling
     
     // Reset icon
     const icon = menuToggle.querySelector('i');
-    icon.classList.remove('fa-times');
-    icon.classList.add('fa-bars');
+    if (icon) {
+      icon.classList.remove('fa-times');
+      icon.classList.add('fa-bars');
+    }
   }
 });
 
@@ -148,12 +170,39 @@ function isMobile() {
 
 // Add resize handler for responsive adjustments
 window.addEventListener('resize', function() {
+  // Function to check if we're in mobile view
+  function isMobileView() {
+    return window.innerWidth <= 768;
+  }
+  
+  // Reset menu state when resizing from mobile to desktop
+  const mainNav = document.querySelector('.main-nav');
+  const menuToggle = document.querySelector('.menu-toggle');
+  
+  if (!isMobileView() && mainNav && mainNav.classList.contains('active')) {
+    // If resizing to desktop and menu is open, close it
+    mainNav.classList.remove('active');
+    if (menuToggle) {
+      menuToggle.classList.remove('active');
+      const icon = menuToggle.querySelector('i');
+      if (icon) {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      }
+    }
+    document.body.classList.remove('menu-open');
+  }
+  
   if (isMobile()) {
     // Mobile-specific adjustments
-    scroll.update();
+    if (typeof scroll !== 'undefined' && scroll) {
+      scroll.update();
+    }
   } else {
     // Desktop-specific adjustments
-    scroll.update();
+    if (typeof scroll !== 'undefined' && scroll) {
+      scroll.update();
+    }
   }
 });
 
