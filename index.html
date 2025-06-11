@@ -14,9 +14,115 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        /* Navbar styling matching contactform.html */
+        .pageheader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 15, 26, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .headercontainer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        .logo .highlight {
+            color: var(--accent-color);
+        }
+        
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .main-nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: 0.3s ease;
+        }
+        
+        .main-nav .nav-link span::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #60a5fa;
+            transition: width 0.3s ease;
+        }
+        
+        .main-nav .nav-link:hover span::after,
+        .main-nav .nav-link.active span::after {
+            width: 100%;
+        }
+        
+        .main-nav .nav-cta {
+            background: linear-gradient(45deg, #2563eb, #60a5fa);
+            padding: 0.5rem 1.25rem;
+            border-radius: 50px;
+            color: white;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .main-nav .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(37, 99, 235, 0.4);
+        }
+        
+        /* Particle background */
+        #particles-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        body {
+            position: relative;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Particle background -->
+    <canvas id="particles-bg"></canvas>
+    
     <header id="pageheader" class="pageheader">
         <div class="headercontainer">
             <div class="logo">
@@ -333,11 +439,107 @@
             <div class="footer-bottom">
                 <p>Designed & Developed with <i class="fas fa-heart"></i> by Abhijeet Kumar</p>
             </div>
-        </footer>
-    </div>
-
+        </footer>    </div>
+    
     <!-- Locomotive Scroll -->
     <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@3.5.4/dist/locomotive-scroll.min.js"></script>
+    <script>
+        // Particle background
+        document.addEventListener('DOMContentLoaded', function() {
+            const canvas = document.getElementById('particles-bg');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            
+            // Particle settings
+            let particlesArray = [];
+            const numberOfParticles = 50;
+            
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 3 + 1;
+                    this.speedX = (Math.random() - 0.5) * 0.5;
+                    this.speedY = (Math.random() - 0.5) * 0.5;
+                    this.color = `rgba(96, 165, 250, ${Math.random() * 0.2 + 0.1})`;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    if (this.x > canvas.width) this.x = 0;
+                    else if (this.x < 0) this.x = canvas.width;
+                    
+                    if (this.y > canvas.height) this.y = 0;
+                    else if (this.y < 0) this.y = canvas.height;
+                }
+                
+                draw() {
+                    ctx.fillStyle = this.color;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+            
+            function init() {
+                particlesArray = [];
+                for (let i = 0; i < numberOfParticles; i++) {
+                    particlesArray.push(new Particle());
+                }
+            }
+            
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                requestAnimationFrame(animate);
+            }
+            
+            window.addEventListener('resize', function() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                init();
+            });
+            
+            init();
+            animate();
+        });
+        
+        // Navbar scrolling effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('pageheader');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10, 15, 26, 0.95)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.2)';
+            } else {
+                header.style.background = 'rgba(10, 15, 26, 0.8)';
+                header.style.boxShadow = 'none';
+            }
+        });
+        
+        // Initialize Locomotive Scroll
+        const scroll = new LocomotiveScroll({
+          el: document.querySelector('#main1'),
+          smooth: true,
+          lerp: 0.04,
+          smartphone: {
+            smooth: true,
+            lerp: 0.05
+          },
+          tablet: {
+            smooth: true,
+            lerp: 0.05
+          }
+        });
+    </script>
     <!-- Typed.js -->
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <!-- Main JS -->
