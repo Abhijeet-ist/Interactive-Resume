@@ -532,15 +532,24 @@
 
     <div class="about-page">
         <!-- Header/Navigation -->
-        <header class="page-header">
-            <div class="header-container">
+        <header class="pageheader" id="pageheader">
+            <div class="headercontainer">
                 <div class="logo">
                     <h1>Abhijeet<span class="highlight">.</span></h1>
                 </div>
-                <nav class="nav-links">
-                    <a href="index.html" class="home-btn"><i class="fas fa-home"></i> Home</a>
-                    <a href="contactform.html"><i class="fas fa-envelope"></i> Contact</a>
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="index.html" class="nav-link"><span>Home</span></a></li>
+                        <li><a href="index.html#skills" class="nav-link"><span>Skills</span></a></li>
+                        <li><a href="index.html#education" class="nav-link"><span>Education</span></a></li>
+                        <li><a href="aboutme.html" class="nav-link active"><span>About Me</span></a></li>
+                        <li><a href="contactform.html" class="nav-cta">Contact</a></li>
+                    </ul>
                 </nav>
+                <div class="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                    <i class="fas fa-times" style="display: none;"></i>
+                </div>
             </div>
         </header>
 
@@ -652,9 +661,47 @@
         </main>
 
         <!-- Footer -->
-        <footer class="about-footer">
+        <footer>
             <div class="footer-content">
-                <p class="footer-text">Designed & Developed with <i class="fas fa-heart footer-heart"></i> by Abhijeet Kumar | &copy; <span id="year"></span> All Rights Reserved</p>
+                <div class="footer-info">
+                    <h3>Abhijeet Kumar</h3>
+                    <p>Web Developer | B.Tech Student</p>
+                    <p>Passionate about creating meaningful and innovative digital experiences through clean code and
+                        modern technologies.</p>
+                    <p>&copy; <span id="year"></span> All Rights Reserved</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#skills">Skills</a></li>
+                        <li><a href="index.html#education">Education</a></li>
+                        <li><a href="index.html#projects">Projects</a></li>
+                        <li><a href="aboutme.html">About</a></li>
+                        <li><a href="contactform.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contact Me</h4>
+                    <p><i class="fas fa-envelope"></i> kumarabhijeet4132@gmail.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Bihar, India</p>
+                    <p><i class="fas fa-phone"></i> Available on Request</p>
+                    <div class="footer-social">
+                        <a href="https://www.linkedin.com/in/abhijeet-kumar-286a0a331/" target="_blank"
+                            title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/abhijeet.ist/" target="_blank" title="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.threads.net/@abhijeet.ist?hl=en" target="_blank" title="Threads"><i
+                                class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>Designed & Developed with <i class="fas fa-heart"></i> by Abhijeet Kumar</p>
             </div>
         </footer>
     </div>

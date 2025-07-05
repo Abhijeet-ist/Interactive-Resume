@@ -937,6 +937,10 @@
                     <li><a href="contactform.html" class="nav-cta">Contact</a></li>
                 </ul>
             </nav>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-times" style="display: none;"></i>
+            </div>
         </div>
     </header>
 
@@ -1334,6 +1338,54 @@
                 });
             });
         });
+        
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
     </script>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-info">
+                <h3>Abhijeet Kumar</h3>
+                <p>Web Developer | B.Tech Student</p>
+                <p>Passionate about creating meaningful and innovative digital experiences through clean code and
+                    modern technologies.</p>
+                <p>&copy; <span id="current-year"></span> All Rights Reserved</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#skills">Skills</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="aboutme.html">About</a></li>
+                    <li><a href="contactform.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-contact">
+                <h4>Contact Me</h4>
+                <p><i class="fas fa-envelope"></i> kumarabhijeet4132@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> Bihar, India</p>
+                <p><i class="fas fa-phone"></i> Available on Request</p>
+                <div class="footer-social">
+                    <a href="https://www.linkedin.com/in/abhijeet-kumar-286a0a331/" target="_blank"
+                        title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/abhijeet.ist/" target="_blank" title="Instagram"><i
+                            class="fab fa-instagram"></i></a>
+                    <a href="https://www.threads.net/@abhijeet.ist?hl=en" target="_blank" title="Threads"><i
+                            class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Designed & Developed with <i class="fas fa-heart"></i> by Abhijeet Kumar</p>
+        </div>
+    </footer>
 </body>
 </html>

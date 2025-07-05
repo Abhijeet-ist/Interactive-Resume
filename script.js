@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', function() {
 document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.querySelector('.menu-toggle');
   const mainNav = document.querySelector('.main-nav');
+  const barsIcon = document.querySelector('.menu-toggle .fa-bars');
+  const timesIcon = document.querySelector('.menu-toggle .fa-times');
   
   // Function to check if we're in mobile view
   function isMobileView() {
@@ -54,14 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
         menuToggle.classList.toggle('active');
         document.body.classList.toggle('menu-open'); // Add this class to prevent scrolling
         
-        // Update icon
-        const icon = this.querySelector('i');
-        if (icon.classList.contains('fa-bars')) {
-          icon.classList.remove('fa-bars');
-          icon.classList.add('fa-times');
-        } else {
-          icon.classList.remove('fa-times');
-          icon.classList.add('fa-bars');
+        // Toggle visibility of icons
+        if (barsIcon && timesIcon) {
+          barsIcon.style.display = barsIcon.style.display === 'none' ? 'block' : 'none';
+          timesIcon.style.display = timesIcon.style.display === 'none' ? 'block' : 'none';
         }
       }
     });
@@ -70,39 +68,51 @@ document.addEventListener('DOMContentLoaded', function() {
   const navLinks = document.querySelectorAll('.main-nav a');
   navLinks.forEach(link => {
     link.addEventListener('click', function() {
-      mainNav.classList.remove('active');
-      menuToggle.classList.remove('active');
-      document.body.classList.remove('menu-open'); // Remove class to enable scrolling
-      
-      // Reset icon
-      const icon = menuToggle.querySelector('i');
-      if (icon) {
-        icon.classList.remove('fa-times');
-        icon.classList.add('fa-bars');
+      if (isMobileView() && mainNav.classList.contains('active')) {
+        mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        
+        // Reset icons
+        if (barsIcon && timesIcon) {
+          barsIcon.style.display = 'block';
+          timesIcon.style.display = 'none';
+        }
       }
     });
   });
-});
-
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(event) {
-  const mainNav = document.querySelector('.main-nav');
-  const menuToggle = document.querySelector('.menu-toggle');
   
-  if (mainNav && menuToggle && mainNav.classList.contains('active') && 
-      !mainNav.contains(event.target) && 
-      !menuToggle.contains(event.target)) {
-    mainNav.classList.remove('active');
-    menuToggle.classList.remove('active');
-    document.body.classList.remove('menu-open'); // Remove class to enable scrolling
-    
-    // Reset icon
-    const icon = menuToggle.querySelector('i');
-    if (icon) {
-      icon.classList.remove('fa-times');
-      icon.classList.add('fa-bars');
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    if (mainNav && mainNav.classList.contains('active')) {
+      if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+        mainNav.classList.remove('active');
+        menuToggle.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        
+        // Reset icons
+        if (barsIcon && timesIcon) {
+          barsIcon.style.display = 'block';
+          timesIcon.style.display = 'none';
+        }
+      }
     }
-  }
+  });
+  
+  // Reset menu state on window resize
+  window.addEventListener('resize', function() {
+    if (!isMobileView() && mainNav.classList.contains('active')) {
+      mainNav.classList.remove('active');
+      menuToggle.classList.remove('active');
+      document.body.classList.remove('menu-open');
+      
+      // Reset icons
+      if (barsIcon && timesIcon) {
+        barsIcon.style.display = 'block';
+        timesIcon.style.display = 'none';
+      }
+    }
+  });
 });
 
 // Intersection Observer for animation on scroll
