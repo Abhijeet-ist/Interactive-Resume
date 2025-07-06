@@ -4,15 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | Abhijeet Kumar</title>
-    <!-- Google Fonts -->
+    <meta name="description" content="Learn more about Abhijeet Kumar, a B.Tech student specializing in Computer Engineering. Discover my skills, projects, and passion for technology.">
+    <!-- External Fonts - Poppins for headings, Montserrat for body text -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome Icons -->
+    
+    <!-- Font Awesome - Used for icons throughout the page -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Custom CSS -->
+    
+    <!-- Global CSS Styles - Shared across all pages -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Page-specific styles - Applied only to About Me page -->
     <style>
+      
         :root {
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             --accent-color: #60a5fa;
@@ -26,6 +32,11 @@
             --max-width: 1200px;
         }
 
+        /* 
+        ==========================================================
+        BASE STYLES - Core body and layout styling
+        ==========================================================
+        */
         body {
             margin: 0;
             padding: 0;
@@ -35,6 +46,12 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
+        /* 
+        ==========================================================
+        COMPONENT STYLES - Reusable components and layout sections
+        ==========================================================
+        */
 
         /* Futuristic particle background */
         .particles {
@@ -527,16 +544,30 @@
     </style>
 </head>
 <body>
-    <!-- Particle effect background -->
+    <!-- 
+    ========================================================
+    INTERACTIVE BACKGROUND - Animated particle system 
+    Creates a dynamic, engaging visual effect
+    ========================================================
+    -->
     <canvas id="particles" class="particles"></canvas>
 
     <div class="about-page">
-        <!-- Header/Navigation -->
+        <!-- 
+        ========================================================
+        NAVIGATION - Site header with responsive navigation menu
+        - Includes logo, main navigation links and mobile toggle
+        - Shares design with other pages but highlights current page
+        ========================================================
+        -->
         <header class="pageheader" id="pageheader">
             <div class="headercontainer">
+                <!-- Logo/Brand -->
                 <div class="logo">
                     <h1>Abhijeet<span class="highlight">.</span></h1>
                 </div>
+                
+                <!-- Main Navigation Menu -->
                 <nav class="main-nav">
                     <ul>
                         <li><a href="index.html" class="nav-link"><span>Home</span></a></li>
@@ -546,6 +577,8 @@
                         <li><a href="contactform.html" class="nav-cta">Contact</a></li>
                     </ul>
                 </nav>
+                
+                <!-- Mobile Menu Toggle Button -->
                 <div class="menu-toggle">
                     <i class="fas fa-bars"></i>
                     <i class="fas fa-times" style="display: none;"></i>
@@ -553,14 +586,27 @@
             </div>
         </header>
 
-        <!-- Main content -->
+        <!-- 
+        ========================================================
+        MAIN CONTENT - Primary information about the developer
+        Includes profile image, bio, stats and call-to-action
+        ========================================================
+        -->
         <main>
             <section class="about-container">
-                <!-- Profile image section -->
+                <!-- 
+                PROFILE IMAGE - Visual representation with animated frame
+                Contains floating tech icons to represent skills
+                -->
                 <div class="profile-section">
                     <div class="profile-image-container">
+                        <!-- Decorative animated frame -->
                         <div class="profile-frame"></div>
+                        
+                        <!-- Profile Photo -->
                         <img src="mee.jpg" alt="Abhijeet Kumar" class="profile-image">
+                        
+                        <!-- Floating Technology Icons - Visual indicators of tech stack -->
                         <div class="tech-icons">
                             <i class="fab fa-html5 tech-icon icon-1"></i>
                             <i class="fab fa-css3-alt tech-icon icon-2"></i>
@@ -571,16 +617,25 @@
                     </div>
                 </div>
 
-                <!-- About content -->
+                <!-- 
+                BIOGRAPHICAL INFORMATION - Text content about professional background
+                Includes animated elements and highlighted content
+                -->
                 <div class="about-content">
+                    <!-- Animated accent line -->
                     <div class="glowing-line"></div>
+                    
                     <div class="about-content-inner">
+                        <!-- Section heading and introduction -->
                         <span class="section-tag">About Me</span>
                         <h1 class="about-title">Crafting Digital Experiences with Code</h1>
                         <p class="about-text">As a <span class="highlight-text">first-year B.Tech student specializing in Computer Engineering</span>, I am passionate about leveraging technology to solve real-world problems. My journey in tech is fueled by curiosity and a drive to create innovative solutions.</p>
                         <p class="about-text">I am committed to academic excellence and actively participate in various <span class="highlight-text">technical workshops and hackathons</span> to enhance my practical knowledge. My objective is to contribute to innovative projects and collaborate with industry professionals to gain hands-on experience.</p>
 
-                        <!-- Stats -->
+                        <!-- 
+                        ACHIEVEMENT STATISTICS - Key metrics and accomplishments
+                        Displayed in a responsive grid layout
+                        -->
                         <div class="stats-container">
                             <div class="stat-item">
                                 <div class="stat-number">5+</div>
@@ -600,7 +655,10 @@
                             </div>
                         </div>
 
-                        <!-- CTA Buttons -->
+                        <!-- 
+                        CALL-TO-ACTION BUTTONS - Primary interaction points
+                        Direct links to contact and homepage
+                        -->
                         <div class="about-cta">
                             <a href="mailto:kumarabhijeet4132@gmail.com" class="btn btn-primary">
                                 <i class="fas fa-envelope"></i> Contact Me
@@ -613,10 +671,16 @@
                 </div>
             </section>
 
-            <!-- Skills Section -->
+            <!-- 
+            ========================================================
+            SKILLS SECTION - Core technical competencies and expertise
+            Displayed as interactive cards with icons and descriptions
+            ========================================================
+            -->
             <section class="skills-section">
                 <h2 class="section-title">Core Competencies</h2>
                 <div class="skills-container">
+                    <!-- Web Development Skill Card -->
                     <div class="skill-card">
                         <div class="skill-header">
                             <div class="skill-icon">
@@ -627,6 +691,7 @@
                         <p class="skill-desc">Creating responsive and visually appealing websites using the latest front-end technologies and best practices.</p>
                     </div>
 
+                    <!-- Responsive Design Skill Card -->
                     <div class="skill-card">
                         <div class="skill-header">
                             <div class="skill-icon">
@@ -637,6 +702,7 @@
                         <p class="skill-desc">Developing interfaces that work flawlessly across all devices, from desktops to smartphones.</p>
                     </div>
 
+                    <!-- Programming Languages Skill Card -->
                     <div class="skill-card">
                         <div class="skill-header">
                             <div class="skill-icon">
@@ -647,6 +713,7 @@
                         <p class="skill-desc">Proficient in multiple programming languages including JavaScript, Python, and currently learning React.</p>
                     </div>
 
+                    <!-- Database Management Skill Card -->
                     <div class="skill-card">
                         <div class="skill-header">
                             <div class="skill-icon">
